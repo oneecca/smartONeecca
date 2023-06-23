@@ -81,8 +81,8 @@
       Kisah sejarah berdirinya Oneecca &ensp; - &ensp; Lihat >>
     </a>
 <script>
-  var go    = 'http://192.168.43.248:16123/';
-  var ok    = 'ok.php';
+  var go    = 'http://192.168.43.248:16123/smarthome/oneecca';
+  var ok    = 'http://192.168.43.248:16123/ok.php';
   var ctrl  = 'smarthome/oneecca';
   var sjrh    = 'https://oneecca.github.io/about/';
   var start = 'Connecting to Smart Home';
@@ -103,11 +103,11 @@
       if (this.readyState == 4 && this.status == 200) {
         var res = this.responseText;
         if (res == 'OK') {
-          window.location = go + ctrl;
+          window.location = go;
         }
       }
     };
-    xhttp.open("GET", go + ok, true);
+    xhttp.open("GET", ok, true);
     xhttp.send();
   }
 
