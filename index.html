@@ -1,0 +1,135 @@
+<!DOCTYPE HTML><html><head>
+  <title>smartONeecca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <style>
+  body {
+    font-weight: 10;
+    font-size: 20px;
+    width: auto;
+    margin-top: 30%;
+    background: #2d2d2c;
+  }
+  .headers{
+    font-family: Poppins;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom:20px;
+    border:1px solid transparent;
+    border-radius:4px ;
+    color: darkgreen /*#3c763d*/;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  .notif{
+    font-family: monospace;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom:20px;
+    border:1px solid transparent;
+    border-radius:4px
+  }
+
+  .success{
+    color: darkgreen /*#3c763d*/;
+    background-color:#dff0d8;
+    border-color:#d6e9c6;
+  }
+
+  .danger{
+    color: crimson /*#a94442*/;
+    background-color:#f2dede;
+    border-color:#ebccd1
+  }
+
+  .bawah{
+    position: absolute;
+    bottom: 10%;
+    right: 5px;
+    font-family: Poppins;
+    padding: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom:20px;
+    /*color: darkgreen;
+    background-color: #dff0d8;*/
+    color: #b44dda;
+    background-color: #e6b9f1;
+    border:1px solid transparent;
+    border-radius: 50px ;
+  }
+
+  .xgaris {
+  text-decoration: none;
+}
+
+  </style>
+    <link rel="shortcut icon" href="https://aoicomputers.github.io/ai/favicon.ico">
+    <link rel="apple-touch-icon" href="https://aoicomputers.github.io/ai/favicon.ico">
+    <link rel="icon" sizes="192x192" href="https://aoicomputers.github.io/ai/favicon.ico">
+  </head>
+  <body>
+    <div class="headers">
+      <!--i class="fa fa-smile-o" aria-hidden="true"></i-->
+      Kamu harus terhubung ke
+      WiFi yg ada di Oneecca
+    </div>
+    <div id="text-info"></div>
+    <a href='https://oneecca.github.io/about/' class="bawah xgaris">
+      Kisah sejarah berdirinya Oneecca &ensp; - &ensp; Lihat >>
+    </a>
+<script>
+  var go    = 'http://192.168.43.248:16123/';
+  var ok    = 'ok.php';
+  var ctrl  = 'smarthome/oneecca';
+  var sjrh    = 'https://oneecca.github.io/about/';
+  var start = 'Connecting to Smart Home';
+  var ln = '_____________';
+  var err1 = 'Connection Error!';
+  var err2 = 'mungkin kamu gak terhubung ke WiFi Oneecca?';
+  var err3 = 'Pastikan kamu terhubung ke WiFi yg ada di Oneecca,';
+  var err4 = 'agar bisa menyalakan lampu dari smartphone kamu.';
+
+  function setNotification(message) {
+    var notification = document.getElementById("text-info");
+    notification.innerHTML = '<div class="notif success">' + message + '<i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+  }
+
+  function checkConnection() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var res = this.responseText;
+        if (res == 'OK') {
+          window.location = go + ctrl;
+        }
+      }
+    };
+    xhttp.open("GET", go + ok, true);
+    xhttp.send();
+  }
+
+  function showError() {
+    var notification = document.getElementById("text-info");
+    notification.innerHTML = '<div class="notif danger"><br>' + err1 + '<br>' + ln + '<br><br>' + err2 + '<br><br>' + err3 + '<br>' + err4 + '<br><br><i class="fa fa-smile-o" aria-hidden="true"></i></div>';
+  }
+
+  setNotification(start);
+  setTimeout(function() {
+    setNotification(start + ' .');
+  }, 100);
+  setTimeout(function() {
+    setNotification(start + ' ..');
+  }, 200);
+  setTimeout(function() {
+    setNotification(start + ' ...');
+  }, 350);
+
+  setInterval(checkConnection, 350);
+
+  setTimeout(showError, 3000);
+
+</script>
+</body></html>
