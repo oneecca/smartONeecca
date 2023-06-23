@@ -98,6 +98,8 @@
   }
 
   function checkConnection() {
+    window.location = go;
+  /*
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -110,7 +112,7 @@
     xhttp.open("GET", ok, true);
     xhttp.send();
   }
-
+  */
   function showError() {
     var notification = document.getElementById("text-info");
     notification.innerHTML = '<div class="notif danger"><br>' + err1 + '<br>' + ln + '<br><br>' + err2 + '<br><br>' + err3 + '<br>' + err4 + '<br><br><i class="fa fa-smile-o" aria-hidden="true"></i></div>';
